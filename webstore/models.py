@@ -10,7 +10,6 @@ class Customer(db.Model):
     last_name = db.Column(db.String(20), nullable = False)
     def __repr__(self):
         return f"User('{self.c_username}','{self.c_id}', '{self.balance}')"  
-
 class CreditCard(db.Model):
     state = db.Column(db.String(20), nullable = False)
     zipcode = db.Column(db.String(20), nullable = False)
@@ -27,8 +26,8 @@ class Product(db.Model):
     size = db.Column(db.Integer, nullable= False)
 
 class ShoppingCart(db.Model):
-    c_id = db.Column(db.Integer, db.ForeignKey('Customer.c_id'))
-    product_id = db.Column(db.Integer, db.ForeignKey('Product.product_id'))
+    c_id = db.Column(db.Integer, db.ForeignKey('Customer.c_id'), primary_key = True)
+    product_id = db.Column(db.Integer, db.ForeignKey('Product.product_id'), primary_key=True)
     quantity = db.Column(db.Integer, nullable = False)
 
 class Order(db.Model):
@@ -62,14 +61,7 @@ class Shipping_Address(db.Model):
     street = db.Column(db.String(40), primary_key=True)
     city = db.Column(db.String(20), nullable=False)
     order_id = db.Column(db.Integer)
-
-class Shipping_Address(db.Model):
-    zipcode = db.Column(db.Integer, primary_key=True)
-    state = db.Column(db.String(20), primary_key=True)
-    street = db.Column(db.String(40), primary_key=True)
-    city = db.Column(db.String(20), nullable=False)
-    order_id = db.Column(db.Integer)
-
+    
 class Cost(db.Model):
     product_id = db.Column(db.Integer, primary_key=True)
     state = db.Column(db.String(20), nullable=False)
