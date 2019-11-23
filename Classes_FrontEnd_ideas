@@ -1,0 +1,152 @@
+Classes/FIles Template 
+
+Customer:
+	Customer class
+		-Default username and password used to log in to db
+	`	-get shopping cart
+		-clear shopping cart
+		-get/add/delete credit card
+		-check balance
+		-update balance
+		-getcustomerstate
+		-get orders
+		-make order
+		-
+	Staff Class
+		Default username and password will be used
+		-get product stock
+		-update product stock
+		-set product price (@param state)
+	*Order Class:
+		-Add shopping cart item
+		-remove shopping cart item 
+		-checkout
+		-
+		-
+		-
+		-
+		-
+		-
+		-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						Front End
+
+Front Page:
+		
+	Customer login button
+		-Redirects to a customer login page
+
+Staff login button
+		-Redirects to a staff login page
+	
+Shop button
+		-Redirects to a product page
+
+
+
+Customer Login:
+	
+Create account -> Redirect to another page allowing creation
+
+	Login -> Username password, checked for validity, 
+		Upon success -> redirect to a product page keep the customer id (somehow?)
+	
+Staff Login:
+	
+Login -> Username and password, checked for validity in the staff table
+	Upon success redirect to the Stock Page
+
+Product Page:
+	
+We will scrape the products name, and category from db. And display nicely :P
+ 	Quantity box next to each product.
+	
+Add to cart button:
+ scrapes the product id, customer id, and int from quantity box
+	
+Checkout button:
+		Redirects to Checkout Page.
+
+
+
+
+
+Checkout Page.
+
+	Select the credit card
+		-Add credit card button -> pop up window
+	Add the shipping address
+	
+	Pop up Window:
+
+		Credit card number, state, zip, street address
+
+		
+		Upon confirmation of valid data -> Add information in boxes as a tuple to the  credit card table using current customer id.
+
+Upon adding the address successfully (check attributes for valid format & state name)
+	→ Update price
+
+	Update price:
+		Query all the products price via state, multiply by quantity, sum values.
+		(HOW TO WRITE??????)
+
+	
+Confirm Checkout button:
+
+	Upon checking out… write to order details(again using current customer id) for every product
+	Write to order, giving current timestamp, and setting status to “pending”
+	
+Redirect to Order Details page
+		
+
+Order Details Page:
+
+	Display all the order details for the corresponding order id
+
+	NOTE: Do we delete the order details for an order that is completed? To Avoid fuckery.
+
+
+ 
+
+
+
+
+Staff Login Page:
+	
+	Username/Password Validation
+
+	-No option to create staff account.
+
+	Login Button:
+
+		Upon validation, redirect to Stock page … Keep Staff ID
+
+
+
+Stock Page:
+
+	Each product will have quantity listed, with warehouse name as well
+
+	Quantity is changeable, and update changes button at the bottom will update all tuples in which the stock quantity was changed.
+
+	Update price -> Redirect to price page.
+
+
+Price Page:
+	Query all product ids, and dropdown box of states, changes the price listed.
+
+	Can change price for all states or select etc.
