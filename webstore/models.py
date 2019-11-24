@@ -23,9 +23,9 @@ class CreditCard(db.Model):
 
 class Product(db.Model):
     __tablename__ = 'Product'
-    product_name= db.Column(db.String(20), nullable = False)
-    product_category= db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, primary_key=True)
+    product_name= db.Column(db.String(20), nullable = False)
+    product_category= db.Column(db.Integer, nullable = False)
     size = db.Column(db.Integer, nullable= False)
 
 class ShoppingCart(db.Model):
@@ -33,20 +33,15 @@ class ShoppingCart(db.Model):
     c_id = db.Column(db.Integer, db.ForeignKey('Customer.c_id'), primary_key = True)
     product_id = db.Column(db.Integer, db.ForeignKey('Product.product_id'), primary_key=True)
     quantity = db.Column(db.Integer, nullable = False)
+    db.UniqueConstraint('product_id')
 
 class Order(db.Model):
     __tablename__ = 'Order'
-    order_id = db.Column(db.Integer, primary_key = True)
+    order_id = db.Column(db.Integer, primary_key = True, unique = True)
     subtotal = db.Column(db.Numeric(8,2), nullable=False)
-    card_number = db.Column(db.Integer, primary_key = True)
+    card_number = db.Column(db.Integer, nullable=False)
     time_ordered = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
     status = db.Column(db.String(20), nullable = False)
-
-class OrderDetails(db.Model):
-    __tablename__ = 'OrderDetails'
-    quantity = db.Column(db.Integer, nullable = False)
-    product_id = db.Column(db.Integer, db.ForeignKey('Product.product_id'), primary_key = True)
-    order_id = db.Column(db.Integer, db.ForeignKey('Order.order_id'), primary_key = True)
 
 class Warehouse(db.Model):
     __tablename__ = 'Warehouse'
@@ -60,8 +55,8 @@ class Warehouse(db.Model):
 class Stock(db.Model):
     __tablename__ = 'Stock'
     warehouse_id = db.Column(db.Integer, primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('Product.product_id'), primary_key=True)
     quantity = db.Column(db.Integer, nullable=False)
-    product_id = db.Column(db.Integer, nullable=False)
 
 class Shipping_Address(db.Model):
     __tablename__ = 'Shipping_Address'
@@ -73,7 +68,7 @@ class Shipping_Address(db.Model):
     
 class Cost(db.Model):
     __tablename__ = 'Cost'
-    product_id = db.Column(db.Integer, primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('Product.product_id'), primary_key=True)
     state = db.Column(db.String(20), nullable=False)
     price = db.Column(db.Numeric(8,2))
 
@@ -90,14 +85,15 @@ class Staff(db.Model):
     city = db.Column(db.String(20), nullable=False)
     zipcode = db.Column(db.Integer, nullable=False)
 
+
 class Food(db.Model):
     __tablename__ = 'Food'
-    product_id = db.Column(db.Integer, primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('Product.product_id'), primary_key=True)
     food_category = db.Column(db.String(20), nullable=False)
     calories = db.Column(db.Integer, nullable=False)
 
 class Alcohol(db.Model):
     __tablename__ = 'Alcohol'
-    product_id = db.Column(db.Integer, primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('Product.product_id'), primary_key=True)
     alcohol_category = db.Column(db.String(20), nullable=False)
     alcohol_content = db.Column(db.Numeric(3,1))
