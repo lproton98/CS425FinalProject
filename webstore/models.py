@@ -1,7 +1,12 @@
-from webstore import db
+from webstore import db, login_manager
 from datetime import datetime
+from flask_login import UserMixin
 
-class Customer(db.Model):
+@login_manager.user_loader
+def load_user(user_id):
+    return Customer.query.get(int(user_id))
+
+class Customer(db.Model, UserMixin):
     __tablename__ = 'Customer'
     c_id = db.Column(db.Integer, primary_key=True)
     c_username = db.Column(db.String(20), unique=True, nullable = False)
@@ -10,7 +15,9 @@ class Customer(db.Model):
     first_name = db.Column(db.String(20), nullable = False)
     last_name = db.Column(db.String(20), nullable = False)
     def __repr__(self):
-        return f"User('{self.c_username}','{self.c_id}', '{self.balance}')"  
+        return f"User('{self.c_username}','{self.c_id}', '{self.balance}')"
+    def get_id(self):
+        return (self.c_id)
 
 class CreditCard(db.Model):
     __tablename__ = 'CreditCard'
