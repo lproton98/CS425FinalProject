@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+  <h1>Warehouse</h1>
+  <table class="table table-bordered w-100">
+  <thead>
+  <tr class="table-primary"><th>Warehouse ID</th><th>Street</th><th>Zipcode</th> <th>State</th><th>Capacity</th><th>City</th>
+  <thead>
+  {% for warehouse in warehouseData %}
+    <tr id="warehouse.warehouse_id">
+      <td>{{ warehouse.warehouse_id }}</td>
+      <td>{{ warehouse.street }}</td>
+      <td>{{ warehouse.zipcode}}</td>
+	  <td>{{ warehouse.state}}</td>
+	  <td>{{ warehouse.capacity}}</td>
+	  <td>{{ warehouse.city}}</td>
+	</tr>
+  {% endfor %}
+  </table>
+{% endblock %}
