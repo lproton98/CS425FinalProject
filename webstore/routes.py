@@ -1,18 +1,26 @@
 from flask import render_template, url_for, flash, redirect
 from webstore import app, db
 from webstore.forms import RegistrationForm, CustomerLoginForm
-from webstore.models import Customer
+from webstore.models import Customer, Product, Food, Alcohol
 from flask_login import login_user, current_user, logout_user
 
 
 @app.route('/')
+
 @app.route('/home')  #now we have 2 routes to get to the hello_world page --> /home and just /
 def home():
     return render_template('home.html')
 
 @app.route('/shop')  #new route, new function -> Allows us to have multiple pages easily.
 def shop():
-    return render_template('shop.html')
+    resultFood=Product.query.join(Food, Product.product_id==Food.product_id).add_columns(Product.product_name, Food.calories, Product.size)
+    resultAlcohol=Product.query.join(Alcohol, Product.product_id==Alcohol.product_id).add_columns(Product.product_name, Alcohol.alcohol_content, Product.size)
+    return render_template('shop.html', productsFood=resultFood, productsAlcohol=resultAlcohol, title='Products')
+
+@app.route('/warehouse') #creates warehouse page
+def warehouse():
+    result=Warehouse.query.all()
+    return render_template('warehouse.html', warehouseData=result)
 
 @app.route('/login', methods=['GET', 'POST'])
 def customer_login(): #Customer Login page
