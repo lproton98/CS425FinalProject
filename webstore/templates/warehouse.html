@@ -18,4 +18,33 @@
 	</tr>
   {% endfor %}
   </table>
+  
+  <h1>Stock</h1>
+  <table class="table table-bordered w-100">
+  <thead>
+  <tr class="table-primary"><th>Warehouse ID</th><th>Product ID</th><th>Quantity</th></tr>
+  <thead>
+  {% for stock in stockData %}
+    <tr id="stock.product_id">
+      <td>{{ stock.warehouse_id }}</td>
+      <td>{{ stock.product_id }}</td>
+      <td>{{ stock.quantity }}</td>
+	</tr>
+  {% endfor %}
+  </table>
+  
+  <h2>Cost<h2>
+  <table class="table table-bordered w-100">
+  <thead>
+  <tr class="table-primary"><th>Product ID</th><th>State</th><th>Price</th></tr>
+  <thead>
+  {% for cost in costData %}
+    <tr id="stock.product_id">
+      <td>{{ cost.product_id }}</td>
+      <td>{{ cost.state }}</td>
+      <td>{{ cost.price }}</td>
+	</tr>
+  {% endfor %}
+  </table>
+  
 {% endblock %}

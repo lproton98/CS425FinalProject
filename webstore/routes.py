@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect
 from webstore import app, db
 from webstore.forms import RegistrationForm, CustomerLoginForm
-from webstore.models import Customer, Product, Food, Alcohol, Warehouse
+from webstore.models import Customer, Product, Food, Alcohol, Warehouse, Stock, Cost
 from flask_login import login_user, current_user, logout_user
 
 
@@ -19,8 +19,11 @@ def shop():
 
 @app.route('/warehouse') #creates warehouse page
 def warehouse():
-    result=Warehouse.query.all()
-    return render_template('warehouse.html', warehouseData=result, title='Warehouse')
+    resultWarehouse=Warehouse.query.all()
+    resultStock=Stock.query.all()
+    resultCost=Cost.query.all()
+    return render_template('warehouse.html', warehouseData=resultWarehouse, stockData=resultStock, costData=resultCost, title='Warehouse')
+    
 
 @app.route('/login', methods=['GET', 'POST'])
 def customer_login(): #Customer Login page
