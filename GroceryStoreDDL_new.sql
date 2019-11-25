@@ -100,12 +100,10 @@ CREATE TABLE "Alcohol"(
 	PRIMARY KEY("product_id")
 );
 
-ALTER TABLE "creditcard" ADD FOREIGN KEY ("c_id") REFERENCES "customer"("c_id"); 
-ALTER TABLE "shopping_cart" ADD FOREIGN KEY ("c_id") REFERENCES "customer"("c_id");
-ALTER TABLE "order" ADD FOREIGN KEY ("card_number") REFERENCES "creditcard"("card_number");
-ALTER TABLE "order_details" ADD FOREIGN KEY ("product_id") REFERENCES "product"("product_id");
-ALTER TABLE "order_details" ADD FOREIGN KEY ("order_id") REFERENCES "order"("order_id");
-ALTER TABLE "stock" ADD FOREIGN KEY ("warehouse_id") REFERENCES "warehouse"("warehouse_id");
-ALTER TABLE "cost" ADD FOREIGN KEY ("product_id") REFERENCES "product"("product_id");
-ALTER TABLE "food" ADD FOREIGN KEY ("product_id") REFERENCES "product"("product_id");
-ALTER TABLE "alcohol" ADD FOREIGN KEY ("product_id") REFERENCES "product"("product_id");
+ALTER TABLE "Creditcard" ADD FOREIGN KEY ("c_id") REFERENCES "Customer"("c_id");
+ALTER TABLE "Shopping_cart" ADD FOREIGN KEY ("c_id") REFERENCES "Customer"("c_id");
+ALTER TABLE "Order" ADD FOREIGN KEY ("card_number") REFERENCES "Creditcard"("card_number")
+ALTER TABLE "Stock" ADD FOREIGN KEY ("warehouse_id") REFERENCES "Warehouse"("warehouse_id")
+ALTER TABLE "Cost" ADD FOREIGN KEY ("product_id") REFERENCES "Product"("product_id");
+ALTER TABLE "Food" ADD FOREIGN KEY ("product_id") REFERENCES "Product"("product_id");
+ALTER TABLE "Alcohol" ADD FOREIGN KEY ("product_id") REFERENCES "Product"("product_id");
