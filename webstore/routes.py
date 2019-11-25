@@ -61,7 +61,7 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route("/account", methods = ['Get', 'Post'])
+@app.route("/account", methods = ['GET', 'POST'])
 def account():
     form = CreditCardForm()
     if form.validate_on_submit():
