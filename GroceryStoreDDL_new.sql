@@ -102,8 +102,8 @@ CREATE TABLE "Alcohol"(
 
 ALTER TABLE "Creditcard" ADD FOREIGN KEY ("c_id") REFERENCES "Customer"("c_id");
 ALTER TABLE "Shopping_cart" ADD FOREIGN KEY ("c_id") REFERENCES "Customer"("c_id");
-ALTER TABLE "Order" ADD FOREIGN KEY ("card_number") REFERENCES "Creditcard"("card_number")
-ALTER TABLE "Stock" ADD FOREIGN KEY ("warehouse_id") REFERENCES "Warehouse"("warehouse_id")
+ALTER TABLE "Order" ADD FOREIGN KEY ("card_number") REFERENCES "Creditcard"("card_number");
+ALTER TABLE "Stock" ADD FOREIGN KEY ("warehouse_id") REFERENCES "Warehouse"("warehouse_id");
 ALTER TABLE "Cost" ADD FOREIGN KEY ("product_id") REFERENCES "Product"("product_id");
 ALTER TABLE "Food" ADD FOREIGN KEY ("product_id") REFERENCES "Product"("product_id");
 ALTER TABLE "Alcohol" ADD FOREIGN KEY ("product_id") REFERENCES "Product"("product_id");
