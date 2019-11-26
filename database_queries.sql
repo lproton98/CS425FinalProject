@@ -41,8 +41,8 @@ values ('beers', '5', (SELECT product_id FROM public."Product" WHERE product_nam
 
 /*cost table*/
 insert into public."Cost"("product_id", "state", "price")
-values (1, 'CA', 10),
-((1, 'IL', 8),
+values ((SELECT product_id FROM public."Product" WHERE product_id=1), 'CA', 10),
+(1, 'IL', 8),
 (1, 'FL', 6),
 (1, 'TN', 4),
 (1, 'PA', 7),
