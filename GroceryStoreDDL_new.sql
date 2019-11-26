@@ -107,3 +107,4 @@ ALTER TABLE "Stock" ADD FOREIGN KEY ("warehouse_id") REFERENCES "Warehouse"("war
 ALTER TABLE "Cost" ADD FOREIGN KEY ("product_id") REFERENCES "Product"("product_id");
 ALTER TABLE "Food" ADD FOREIGN KEY ("product_id") REFERENCES "Product"("product_id");
 ALTER TABLE "Alcohol" ADD FOREIGN KEY ("product_id") REFERENCES "Product"("product_id");
+ALTER TABLE "Shipping_address" ADD FOREIGN KEY ("order_id") REFERENCES "Order"("order_id");

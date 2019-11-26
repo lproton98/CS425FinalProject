@@ -25,7 +25,7 @@ class CreditCard(db.Model):
     zipcode = db.Column(db.String(20), nullable = False)
     street = db.Column(db.String(40), nullable = False)
     city = db.Column(db.String(20), nullable = False)
-    cardnumber = db.Column(db.String(20), nullable = False, primary_key=True)
+    cardnumber = db.Column(db.String(20), nullable = False, primary_key = True)
     c_id = db.Column(db.Integer, db.ForeignKey('Customer.c_id'))
 
 class Product(db.Model):
