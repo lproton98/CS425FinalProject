@@ -110,9 +110,9 @@ values(1, 7100, 1),
 
 /*warehouse table*/ 
 insert into public."Warehouse"("warehouse_id", "street", "zip", "state", "capacity", "city")
-values (default, '2100 Rodeo Dr', 94002, 'CA', 80000, 'Los Angeles'),
-(default, '400 Madison Ave', 60615, 'IL', 100000, 'Chicago'),
-(default, '4210 S Walnut St', 15001, 'PA', 75000, 'Philadelphia');
+values (1, '2100 Rodeo Dr', 94002, 'CA', 80000, 'Los Angeles'),
+(2, '400 Madison Ave', 60615, 'IL', 100000, 'Chicago'),
+(3, '4210 S Walnut St', 15001, 'PA', 75000, 'Philadelphia');
 
 
 /*staff table*/
